@@ -1,0 +1,26 @@
+# Create input file
+with open("input.txt", "w") as f:
+    f.write("Python Programming\n")
+    f.write("File Handling\n")
+    f.write("Data Science\n")
+    f.write("Machine Learning\n")
+
+# Read input file
+with open("input.txt", "r") as f:
+    lines = f.readlines()
+
+# Count total lines
+print("Total number of lines:", len(lines))
+
+# Extract first two lines
+first_two = lines[:2]
+
+# Write into output file
+with open("output.txt", "w") as f:
+    f.writelines(first_two)
+
+print("First two lines written successfully!")
+
+print("Extracted lines:")
+for line in first_two:
+    print(line, end="")

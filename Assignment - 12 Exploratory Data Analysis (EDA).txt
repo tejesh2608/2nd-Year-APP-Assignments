@@ -1,0 +1,68 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+from scipy.stats import zscore
+
+# Create sample dataset
+data = {
+    'Age': [24, 27, 22, 32, 29, 25, 100],
+    'Salary': [50000, 60000, 52000, 58000, 62000, 55000, 600000]
+}
+
+df = pd.DataFrame(data)
+
+# Display dataset
+print("Dataset:")
+print(df)
+
+# Descriptive Statistics
+print("\nDescriptive Statistics:")
+print(df.describe())
+
+print("Mean:", df['Age'].mean())
+print("Median:", df['Age'].median())
+print("Mode:", df['Age'].mode()[0])
+print("Standard Deviation:", df['Age'].std())
+print("Variance:", df['Age'].var())
+print("Minimum:", df['Age'].min())
+print("Maximum:", df['Age'].max())
+
+# Histogram
+plt.hist(df['Age'], bins=5, edgecolor='black')
+plt.title("Age Distribution")
+plt.xlabel("Age")
+plt.ylabel("Frequency")
+plt.show()
+
+# Box Plot
+sns.boxplot(y=df['Age'])
+plt.title("Box Plot of Age")
+plt.show()
+
+# Scatter Plot
+plt.scatter(df['Age'], df['Salary'])
+plt.title("Age vs Salary")
+plt.xlabel("Age")
+plt.ylabel("Salary")
+plt.show()
+
+# Correlation Matrix
+sns.heatmap(df.corr(), annot=True)
+plt.title("Correlation Matrix")
+plt.show()
+
+# Handling Missing Values
+print("\nMissing Values:")
+print(df.isnull())
+
+# Handling Outliers using Z-score
+df['Age_zscore'] = zscore(df['Age'])
+df['Salary_zscore'] = zscore(df['Salary'])
+
+df_no_outliers = df[
+    (df['Age_zscore'].abs() <= 3) &
+    (df['Salary_zscore'].abs() <= 3)
+]
+
+print("\nData After Removing Outliers:")
+print(df_no_outliers)
