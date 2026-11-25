@@ -1,0 +1,47 @@
+import gc
+import tracemalloc
+
+# Start memory tracking
+tracemalloc.start()
+
+# Function to create objects
+def create_objects():
+    objects = []
+
+    for i in range(10000):
+        objects.append([i] * 10)
+
+    return objects
+
+# Display initial memory
+print("Initial Memory:")
+print(tracemalloc.get_traced_memory())
+
+# Create objects
+data = create_objects()
+
+print("\nMemory After Creating Objects:")
+print(tracemalloc.get_traced_memory())
+
+# Delete objects
+del data
+
+# Display memory before garbage collection
+print("\nBefore Garbage Collection:")
+print(tracemalloc.get_traced_memory())
+
+# Perform garbage collection
+collected = gc.collect()
+
+print("\nGarbage Collector Collected:", collected)
+
+# Display memory after collection
+print("\nAfter Garbage Collection:")
+print(tracemalloc.get_traced_memory())
+
+# Display GC thresholds
+print("\nGarbage Collection Thresholds:")
+print(gc.get_threshold())
+
+# Stop memory tracking
+tracemalloc.stop()

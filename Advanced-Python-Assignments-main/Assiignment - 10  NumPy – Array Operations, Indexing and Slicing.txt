@@ -1,0 +1,29 @@
+import numpy as np
+
+# Create array from 1 to 10
+arr = np.arange(1, 11)
+
+print("Original Array:", arr)
+
+# Indexing
+print("First Element:", arr[0])
+print("Last Element:", arr[-1])
+
+# Slicing
+print("First Five Elements:", arr[:5])
+print("Elements from 3 to 7:", arr[2:7])
+
+# Mathematical Operations
+print("Addition:", arr + 2)
+print("Subtraction:", arr - 2)
+print("Multiplication:", arr * 2)
+print("Division:", arr / 2)
+
+# Array functions
+print("Sum:", np.sum(arr))
+print("Minimum:", np.min(arr))
+print("Maximum:", np.max(arr))
+print("Mean:", np.mean(arr))
+
+# Sorting
+print("Sorted Array:", np.sort(arr))
